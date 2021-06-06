@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Kenson Cowherd Validation JavaScript</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .error,
+      .error-2 {
+        color: red;
+      }
+      .btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: blue;
+        height: 5rem;
+      }
+      button[type="submit"] {
+        margin-top: 1rem;
+        display: block;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="btns">
+      <button>Home</button>
+      <button>About</button>
+      <button>View</button>
+    </div>
+    <h1>Home</h1>
+    <form name="myForm" action="view.html" onsubmit="return validateForm()">
+      <input type="text" id="username" name="username" placeholder="Username" />
+      <input
+        type="password"
+        id="userPassword"
+        name="userPassword"
+        placeholder="Password"
+      />
+      <button type="submit">Login</button>
+      <span class="error"></span>
+      <span class="error-2"></span>
+    </form>
+    <script>
+      function validateForm() {
+        const usernameInput = document.myForm.username.value;
+        const passwordInput = document.myForm.userPassword.value;
+        const error1 = document.querySelector(".error");
+        const error2 = document.querySelector(".error-2");
+        error1.innerHTML = "";
+        error2.innerHTML = "";
+        if (usernameInput == null || usernameInput === "") {
+          error1.innerHTML = "Username is blank";
+          return false;
+        }
+        if (usernameInput !== "coolStudent123") {
+          error1.innerHTML = "You didn't type in a valid username";
+          return false;
+        }
+        if (passwordInput == null || passwordInput === "") {
+          error2.innerHTML = "Password is blank";
+          return false;
+        }
+        if (passwordInput !== "coolStudent123") {
+          error2.innerHTML = "You didn't type in a valid password";
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: blue;
+        height: 5rem;
+      }
+      .note {
+        margin-top: 1rem;
+        display: block;
+      }
+      .err,
+      .err-2 {
+        color: red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="btns">
+      <button>Home</button>
+      <button>About</button>
+      <button>View</button>
+    </div>
+    <h1>View Notes</h1>
+    <input type="text" id="firstField" name="firstField" />
+    <input type="text" id="secondField" name="secondField" />
+    <button type="button" class="note">Submit Note</button>
+    <table></table>
+    <span class="err"></span>
+    <span class="err-2"></span>
+    <script>
+      const submitBtn = document.querySelector(".note");
+      const err = document.querySelector(".err");
+      const err2 = document.querySelector(".err-2");
+      let index = 0;
+      submitBtn.addEventListener("click", function () {
+        err.innerHTML = "";
+        err2.innerHTML = "";
+        const firstFieldText = document.querySelector("#firstField").value;
+        const secondFieldText = document.querySelector("#secondField").value;
+        let regex = /^[0-9]+$/; //Regular exp to check if input is number
+        if (
+          secondFieldText.match(regex) &&
+          firstFieldText != null &&
+          firstFieldText !== ""
+        ) {
+          let table = document.querySelector("table");
+          let row = table.insertRow(index);
+          let cell1 = row.insertCell(0);
+          let cell2 = row.insertCell(1);
+          cell1.innerHTML = secondFieldText;
+          cell2.innerHTML = firstFieldText;
+          index++;
+        }
+        if (!secondFieldText.match(regex)) {
+          err.innerHTML = "Enter a valid number in second field!";
+        }
+        if (firstFieldText == null || firstFieldText == "") {
+          err2.innerHTML = "Note should be atleast one character long!";
+        }
+      });
+    </script>
+  </body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
